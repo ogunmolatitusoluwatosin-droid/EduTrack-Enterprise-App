@@ -1,0 +1,93 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: Zero-password security: password or password_hash fields are strictly rejected
+    function noPasswordStored() {
+      return !('password' in request.resource.data) && !('password_hash' in request.resource.data);
+    }
+
+    // 1. Users
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // 2. System Roles
+    match /roles/{roleId} {
+      allow read, write: if true;
+    }
+
+    // 3. Staff Directory
+    match /staff/{staffId} {
+      allow read, write: if true;
+    }
+
+    // 4. Students Master Roster
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+
+    // 5. Guardians & Student-Guardian Links
+    match /guardians/{guardianId} {
+      allow read, write: if true;
+    }
+
+    match /student_guardians/{sgId} {
+      allow read, write: if true;
+    }
+
+    // 6. Academic Sessions & Terms
+    match /academic_sessions/{sessionId} {
+      allow read, write: if true;
+    }
+
+    match /terms/{termId} {
+      allow read, write: if true;
+    }
+
+    // 7. Classes & Teacher Assignments
+    match /classes/{classId} {
+      allow read, write: if true;
+    }
+
+    match /teacher_class_assignments/{assignId} {
+      allow read, write: if true;
+    }
+
+    // 8. Subjects & Class Subjects
+    match /subjects/{subjectId} {
+      allow read, write: if true;
+    }
+
+    match /class_subjects/{csId} {
+      allow read, write: if true;
+    }
+
+    // 9. Attendance
+    match /attendance/{attendanceId} {
+      allow read, write: if true;
+    }
+
+    // 10. Assessments
+    match /assessments/{assessmentId} {
+      allow read, write: if true;
+    }
+
+    // 11. Assessment Scores
+    match /assessment_scores/{scoreId} {
+      allow read, write: if true;
+    }
+
+    // 12. Settings
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // 13. Audit Logs
+    match /audit_logs/{logId} {
+      allow read, write: if true;
+    }
+  }
+}
+

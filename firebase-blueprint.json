@@ -1,0 +1,204 @@
+{
+  "entities": {
+    "users": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique user ID" },
+        "email": { "type": "string", "description": "Normalized institutional email address" },
+        "full_name": { "type": "string", "description": "Full name of the user" },
+        "password": { "type": "string", "description": "Institutional user password" },
+        "role_id": { "type": "string", "description": "Reference to roles.id" },
+        "role": { "type": "string", "description": "Role name (super_admin, school_admin, teacher, staff)" },
+        "staff_id": { "type": "string", "description": "Optional reference to staff.id" },
+        "avatar_url": { "type": "string", "description": "Profile picture URL" },
+        "is_active": { "type": "boolean", "description": "User account status" },
+        "last_login": { "type": "string", "description": "ISO timestamp of last sign in" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "roles": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique role identifier" },
+        "name": { "type": "string", "description": "Unique system role enum name" },
+        "label": { "type": "string", "description": "Display label" },
+        "description": { "type": "string", "description": "Role description and privilege scope" },
+        "created_at": { "type": "string", "description": "Creation timestamp" }
+      }
+    },
+    "staff": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique staff document identifier" },
+        "staff_code": { "type": "string", "description": "Institution staff code (e.g., STF-001)" },
+        "employee_number": { "type": "string", "description": "Human resources payroll ID" },
+        "first_name": { "type": "string", "description": "First name" },
+        "middle_name": { "type": "string", "description": "Middle name" },
+        "last_name": { "type": "string", "description": "Last name" },
+        "gender": { "type": "string", "description": "Gender: male | female | other" },
+        "date_of_birth": { "type": "string", "description": "DOB YYYY-MM-DD" },
+        "phone": { "type": "string", "description": "Phone number" },
+        "email": { "type": "string", "description": "Institutional email address" },
+        "address": { "type": "string", "description": "Residential address" },
+        "job_title": { "type": "string", "description": "Role/Job designation" },
+        "department": { "type": "string", "description": "Academic or administrative department" },
+        "employment_type": { "type": "string", "description": "full_time | part_time | contract" },
+        "employment_status": { "type": "string", "description": "active | on_leave | suspended | resigned | retired" },
+        "date_employed": { "type": "string", "description": "Employment date" },
+        "qualification": { "type": "string", "description": "Educational credentials" },
+        "profile_photo_url": { "type": "string", "description": "Avatar URL in Firebase Storage" },
+        "assigned_class_id": { "type": "string", "description": "Primary assigned class ID if class teacher" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "students": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique student document identifier" },
+        "student_code": { "type": "string", "description": "Student tracking code (e.g. STU-001)" },
+        "admission_number": { "type": "string", "description": "Unique institutional admission number (e.g. EDU/2026/001)" },
+        "first_name": { "type": "string", "description": "First name" },
+        "middle_name": { "type": "string", "description": "Middle name" },
+        "last_name": { "type": "string", "description": "Last name" },
+        "gender": { "type": "string", "description": "Gender: male | female | other" },
+        "date_of_birth": { "type": "string", "description": "DOB YYYY-MM-DD" },
+        "nationality": { "type": "string", "description": "Nationality" },
+        "state_or_region": { "type": "string", "description": "State or region of origin" },
+        "address": { "type": "string", "description": "Residential address" },
+        "admission_date": { "type": "string", "description": "Date admitted" },
+        "current_class_id": { "type": "string", "description": "Foreign key to classes.id" },
+        "academic_session_id": { "type": "string", "description": "Current enrolled academic session ID" },
+        "student_status": { "type": "string", "description": "active | graduated | transferred | suspended | withdrawn" },
+        "profile_photo_url": { "type": "string", "description": "Student photo URL in Firebase Storage" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "guardians": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique guardian ID" },
+        "first_name": { "type": "string", "description": "First name" },
+        "last_name": { "type": "string", "description": "Last name" },
+        "phone": { "type": "string", "description": "Primary phone contact" },
+        "email": { "type": "string", "description": "Guardian email address" },
+        "address": { "type": "string", "description": "Contact address" },
+        "occupation": { "type": "string", "description": "Occupation / Employer" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "student_guardians": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique pivot ID" },
+        "student_id": { "type": "string", "description": "Foreign key to students.id" },
+        "guardian_id": { "type": "string", "description": "Foreign key to guardians.id" },
+        "relationship": { "type": "string", "description": "father | mother | guardian | uncle | aunt | other" },
+        "is_primary_contact": { "type": "boolean", "description": "Primary emergency contact flag" }
+      }
+    },
+    "academic_sessions": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique academic session ID" },
+        "name": { "type": "string", "description": "Academic session name (e.g. 2026/2027)" },
+        "start_date": { "type": "string", "description": "Session start date" },
+        "end_date": { "type": "string", "description": "Session end date" },
+        "is_active": { "type": "boolean", "description": "Active session flag" },
+        "is_current": { "type": "boolean", "description": "Current active institutional session flag" },
+        "created_at": { "type": "string", "description": "Creation timestamp" }
+      }
+    },
+    "terms": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique term ID" },
+        "academic_session_id": { "type": "string", "description": "Foreign key to academic_sessions.id" },
+        "name": { "type": "string", "description": "First Term | Second Term | Third Term" },
+        "start_date": { "type": "string", "description": "Term commencement date" },
+        "end_date": { "type": "string", "description": "Term closing date" },
+        "is_active": { "type": "boolean", "description": "Active term flag" },
+        "is_current": { "type": "boolean", "description": "Currently running term flag" }
+      }
+    },
+    "classes": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique class identifier" },
+        "name": { "type": "string", "description": "Class display name (e.g. Primary 1A, JSS 2 Gold)" },
+        "level": { "type": "string", "description": "Grade / Level (e.g. Primary 1, SS 2)" },
+        "section": { "type": "string", "description": "Section (e.g. A, B, Science, Commercial)" },
+        "academic_session_id": { "type": "string", "description": "Foreign key to academic_sessions.id" },
+        "class_teacher_id": { "type": "string", "description": "Foreign key to staff.id for lead class teacher" },
+        "capacity": { "type": "number", "description": "Maximum seating capacity" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "teacher_class_assignments": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique assignment ID" },
+        "teacher_id": { "type": "string", "description": "Foreign key to staff.id" },
+        "class_id": { "type": "string", "description": "Foreign key to classes.id" },
+        "academic_session_id": { "type": "string", "description": "Session for assignment" },
+        "subject_id": { "type": "string", "description": "Optional assigned subject ID" },
+        "is_primary_teacher": { "type": "boolean", "description": "Primary class teacher flag" },
+        "created_at": { "type": "string", "description": "Creation timestamp" }
+      }
+    },
+    "subjects": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique subject identifier" },
+        "name": { "type": "string", "description": "Subject name (e.g. Mathematics)" },
+        "code": { "type": "string", "description": "Short curriculum code (e.g. MTH)" },
+        "description": { "type": "string", "description": "Subject syllabus description" },
+        "created_at": { "type": "string", "description": "Creation timestamp" }
+      }
+    },
+    "class_subjects": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique class subject link ID" },
+        "class_id": { "type": "string", "description": "Foreign key to classes.id" },
+        "subject_id": { "type": "string", "description": "Foreign key to subjects.id" },
+        "teacher_id": { "type": "string", "description": "Foreign key to staff.id assigned to teach" },
+        "academic_session_id": { "type": "string", "description": "Academic session" }
+      }
+    },
+    "attendance": {
+      "fields": {
+        "id": { "type": "string", "description": "Composite key: att_{student_id}_{attendance_date}" },
+        "student_id": { "type": "string", "description": "Foreign key to students.id" },
+        "class_id": { "type": "string", "description": "Foreign key to classes.id" },
+        "attendance_date": { "type": "string", "description": "Date in YYYY-MM-DD format" },
+        "status": { "type": "string", "description": "present | absent | late | excused" },
+        "marked_by": { "type": "string", "description": "User ID or Staff ID who recorded" },
+        "notes": { "type": "string", "description": "Optional absence explanation or notes" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "assessments": {
+      "fields": {
+        "id": { "type": "string", "description": "Unique assessment identifier" },
+        "title": { "type": "string", "description": "Title (e.g. Mid-Term Test, Assignment 1)" },
+        "assessment_type": { "type": "string", "description": "assignment | quiz | test | project | examination" },
+        "class_id": { "type": "string", "description": "Foreign key to classes.id" },
+        "subject_id": { "type": "string", "description": "Foreign key to subjects.id" },
+        "academic_session_id": { "type": "string", "description": "Foreign key to academic_sessions.id" },
+        "term_id": { "type": "string", "description": "Foreign key to terms.id" },
+        "maximum_score": { "type": "number", "description": "Total obtainable score (e.g. 20, 100)" },
+        "weight_percentage": { "type": "number", "description": "Weight contributing to term grade" },
+        "assessment_date": { "type": "string", "description": "Assessment date YYYY-MM-DD" },
+        "created_by": { "type": "string", "description": "Foreign key to user/staff ID" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    },
+    "assessment_scores": {
+      "fields": {
+        "id": { "type": "string", "description": "Composite key: sc_{assessment_id}_{student_id}" },
+        "assessment_id": { "type": "string", "description": "Foreign key to assessments.id" },
+        "student_id": { "type": "string", "description": "Foreign key to students.id" },
+        "score": { "type": "number", "description": "Numeric score achieved" },
+        "feedback": { "type": "string", "description": "Teacher qualitative remarks" },
+        "recorded_by": { "type": "string", "description": "User ID or Staff ID who recorded" },
+        "created_at": { "type": "string", "description": "Creation timestamp" },
+        "updated_at": { "type": "string", "description": "Update timestamp" }
+      }
+    }
+  }
+}

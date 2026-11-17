@@ -1,0 +1,6 @@
+{
+  "name": "EduTrack School Management System",
+  "description": "A centralized, role-based school management web application for managing students, staff, attendance, assessments, classes, and academic records.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
